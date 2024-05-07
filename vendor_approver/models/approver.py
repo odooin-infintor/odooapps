@@ -117,7 +117,7 @@ class AccountMoveInherit(models.Model):
     @api.model 
     def get_view(self, view_id=None, view_type='form', **options):
         res = super(AccountMoveInherit, self).get_view(view_id=view_id, view_type=view_type,**options)
-        is_bill_creator = self.env.user.has_group('po_approver.group_bill_creation') 
+        is_bill_creator = self.env.user.has_group('vendor_approver.group_bill_creation')
         is_base_user = self.env.user.has_group('base.group_system') 
         if not is_base_user:
             if not is_bill_creator: 
@@ -147,7 +147,7 @@ class AccountPaymentInherit(models.Model):
     @api.model 
     def get_view(self, view_id=None, view_type='form', **options):
         res = super(AccountPaymentInherit, self).get_view(view_id=view_id, view_type=view_type,**options)
-        is_payment_creator = self.env.user.has_group('po_approver.group_payment_creation') 
+        is_payment_creator = self.env.user.has_group('vendor_approver.group_payment_creation')
         is_base_user = self.env.user.has_group('base.group_system') 
         if not is_base_user:
             if not is_payment_creator: 
