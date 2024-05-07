@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+	<record model="ir.module.category" id="bill_payment_category">
+		<field name="name">Vendor Bills &amp; Payments</field>
+		<field name="description">User access levels for Vendor Bill and Payments</field>
+		<field name="visible" eval="1" />
+		<field name="sequence">10</field>
+	</record>
+
+	<!--Group for Purchase Bill creation  -->
+	<record id="group_bill_creation" model="res.groups">
+		<field name="name">Vendor Bill Creator</field>
+		<field name="category_id" ref="bill_payment_category"/>
+	</record>
+    
+    <!--Group for Purchase Bill verification  -->
+	<record id="group_bill_verification" model="res.groups">
+		<field name="name">Vendor Bill Verifier</field>
+		<field name="category_id" ref="bill_payment_category"/>
+	</record>
+    
+    <!--Group for Purchase Bill validation  -->
+	<record id="group_bill_validation" model="res.groups">
+		<field name="name">Vendor Bill Validator</field>
+		<field name="category_id" ref="bill_payment_category"/>
+	</record>
+	
+	<!--Group for Purchase Payment creation  -->
+	<record id="group_payment_creation" model="res.groups">
+		<field name="name">Vendor Payment Creator</field>
+		<field name="category_id" ref="bill_payment_category"/>
+	</record>
+    
+    <!--Group for Purchase Payment verification  -->
+	<record id="group_payment_verification" model="res.groups">
+		<field name="name">Vendor Payment Verifier</field>
+		<field name="category_id" ref="bill_payment_category"/>
+	</record>
+    
+    <!--Group for Purchase Payment validation  -->
+	<record id="group_payment_validation" model="res.groups">
+		<field name="name">Vendor Payment Validator</field>
+		<field name="category_id" ref="bill_payment_category"/>
+	</record>
+
+</data>
+</odoo>
