@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="spa_summary_report_view_form" model="ir.ui.view">
+        <field name="name">spa.summary.report.form</field>
+        <field name="model">spa.summary.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="from_date" />
+                            <field name="to_date" />
+                        </group>
+                        <group>
+                            <field name="branch_id" required="1" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_print" type="object" string="Print" class="oe_highlight" />
+                    <button string="Cancel" class="btn-link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="spa_summary_report_action_wizard" model="ir.actions.act_window">
+        <field name="name">Spa Summary Report</field>
+        <field name="res_model">spa.summary.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="spa_summary_report_menu" name="Spa Report" parent="spa_report_menu" sequence="30"
+        action="spa_summary_report_action_wizard" />
+
+</odoo>

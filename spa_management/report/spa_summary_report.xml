@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="spa_summary_report_paperformat" model="report.paperformat">
+        <field name="name">Spa Summary Report A4</field>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="spa_summary_report_action"
+        model="spa.summary.report"
+        string="Spa Summary Report"
+        report_type="qweb-pdf"
+        name="spa_management.summary_report"
+        file="spa_management.summary_report"
+        paperformat="spa_summary_report_paperformat"
+    />
+
+</odoo>

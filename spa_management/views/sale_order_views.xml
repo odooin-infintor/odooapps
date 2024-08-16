@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_in_spa" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.in.spa</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']/.." position="inside">
+                <field name="branch_id" required="1" />
+            </xpath>
+
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">[('customer_rank', '&gt;', 0)]</attribute>
+                <attribute name="context">{'res_partner_search_mode': 'customer', 'show_address': 1,
+                    'show_vat': True, 'default_customer_rank':1}</attribute>
+            </field>
+
+            <!-- Order Line -->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="employee_id" required="0"
+                    domain="[('is_beautician', '=', True), ('branch_id', '=', parent.branch_id)]" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']/.." position="inside">
+                <field name="employee_id" required="0"
+                    domain="[('is_beautician', '=', True), ('branch_id', '=', parent.branch_id)]" />
+            </xpath>
+
+            <!-- Header -->
+            <header position="attributes">
+                <attribute name="invisible">context.get('calendar_booking', False)</attribute>
+            </header>
+            <header position="inside">
+                <button name="action_confirm_booking" type="object" string="Confirm &amp; Pay"
+                    attrs="{'invisible': [('invoice_count', '!=', 0)]}" class="oe_highlight" />
+            </header>
+
+            <!-- Footer -->
+            <xpath expr="//sheet" position="after">
+                <footer invisible="not context.get('calendar_booking', False)">
+                    <button name="action_confirm_booking" type="object" string="Confirm &amp; Pay"
+                        class="oe_highlight" />
+                    <button name="action_save_and_close" type="object" string="Save &amp; Close" class="oe_link" />
+                </footer>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

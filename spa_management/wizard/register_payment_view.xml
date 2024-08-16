@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="spa_payment_view_form" model="ir.ui.view">
+        <field name="name">spa.payment.form</field>
+        <field name="model">spa.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="partner_id" invisible="1" />
+                    <field name="order_id" invisible="1" />
+                    <field name="invoice_id" invisible="1" />
+                    <field name="booking_id" invisible="1" />
+                    <field name="state" invisible="1" />
+                    <group invisible="context.get('hide_payment_line', False)">
+                        <group>
+                            <field name="amount_invoice" widget="monetary" />
+                        </group>
+                        <group>
+                            <field name="date" required="1" attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                        <field name="payment_line_ids" required="1" nolabel="1"
+                            context="{'default_amount': amount_residual}" attrs="{'readonly':[('state','!=','draft')]}">
+                            <tree editable="bottom">
+                                <field name="journal_id" widget="selection" required="1"
+                                    domain="[('type', 'in', ['bank', 'cash'])]" />
+                                <field name="amount" widget="monetary" required="1" />
+                                <field name="currency_id" invisible="1" />
+                                <field name="paid" invisible="1" />
+                            </tree>
+                        </field>
+                    </group>
+                    <group col="6" invisible="context.get('hide_payment_line', False)">
+                        <group class="oe_subtotal_footer oe_right" colspan="2">
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="amount_residual" />
+                            </div>
+                            <field name="amount_residual" nolabel="1" widget="monetary"
+                                class="oe_subtotal_footer_separator" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <div class="oe_clear" />
+                    </group>
+
+                    <group col="1" invisible="context.get('payment_mode', False)">
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_post" type="object" string="Confirm" class="oe_highlight"
+                        attrs="{'invisible': [('state', 'in', ['post', 'done'])]}" />
+                    <button name="action_print_receipt" type="object" string="Print Receipt" class="oe_highlight"
+                        attrs="{'invisible':[('state','in',['draft','done']),('amount_invoice','!=', 0)]}" />
+                    <button name="action_cancel" type="object" string="Close" class="btn-link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="spa_payment_action" model="ir.actions.act_window">
+        <field name="name">Register Payment</field>
+        <field name="res_model">spa.payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

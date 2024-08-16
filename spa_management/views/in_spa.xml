@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <!-- IN-SPA ROOT MENU -->
+    <menuitem id="in_spa_menu_root" name="Spa Management" sequence="10" web_icon="spa_management,static/description/icon.png" groups="sales_team.group_sale_salesman" />
+
+    <menuitem id="spa_report_menu" name="Reports" parent="in_spa_menu_root" sequence="90" />
+
+    <menuitem id="spa_config_menu" name="Configuration" parent="in_spa_menu_root" sequence="100" />
+
+</odoo>

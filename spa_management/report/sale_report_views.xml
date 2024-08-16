@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_product_search_inherit_inspa" model="ir.ui.view">
+        <field name="name">sale.report.search.inherit.inspa</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="arch" type="xml">
+            <filter name="Sales" position="after">
+                <separator />
+                <filter name="products" string="Products" domain="[('product_id.type','!=','service')]" />
+                <filter name="services" string="Services" domain="[('product_id.type','=','service')]" />
+            </filter>
+        </field>
+    </record>
+
+    <record id="sale_report_view_tree" model="ir.ui.view">
+        <field name="name">sale.report.tree</field>
+        <field name="model">sale.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" optional="show" />
+                <field name="date" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="beautician_id" string="Beautician" optional="show" />
+                <field name="product_id" string="Item" optional="show" />
+                <field name="categ_id" string="Category" optional="show" />
+                <field name="product_uom_qty" optional="show" />
+                <field name="price_total" widget="monetary" optional="show" />
+                <field name="discount_amount" widget="monetary" optional="show" />
+                <field name="state" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale.action_order_report_all" model="ir.actions.act_window">
+        <field name="view_mode">pivot,graph,tree</field>
+    </record>
+
+
+    <record id="sale_line_view_tree" model="ir.ui.view">
+        <field name="name">sale.line.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0" delete="0">
+                <field name="order_id" optional="show" />
+                <field name="order_date" optional="show" />
+                <field name="order_partner_id" optional="show" />
+                <field name="employee_id" string="Beautician" optional="show" />
+                <field name="branch_id" optional="show" />
+                <field name="product_id" string="Item" optional="show" />
+                <field name="product_uom_category_id" string="Category" optional="show" />
+                <field name="product_uom_qty" optional="show" />
+                <field name="price_subtotal" widget="monetary" optional="show" />
+                <field name="discount" optional="show" />
+                <field name="state" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_line_view_search" model="ir.ui.view">
+        <field name="name">sale.line.search</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Sales Analysis">
+                <field name="order_date" />
+                <filter string="Date" name="year" invisible="1" date="order_date" default_period="this_year" />
+                <filter name="Quotations" string="Quotations" domain="[('state','=', 'draft')]" />
+                <filter name="Sales" string="Sales Orders" domain="[('state','not in',('draft', 'cancel', 'sent'))]" />
+                <separator />
+                <filter name="products" string="Products"
+                    domain="[('product_id.type','!=','service'),('product_id.sale_ok','=',True)]" />
+                <filter name="services" string="Services"
+                    domain="[('product_id.type','=','service'),('product_id.sale_ok','=',True)]" />
+                <separator />
+                <field name="product_id" />
+                <field name="product_uom_category_id" />
+                <field name="order_partner_id" />
+                <group expand="1" string="Group By">
+                    <filter name="user" string="Beautician" context="{'group_by':'employee_id'}" />
+                    <filter name="branch" string="Branch" context="{'group_by':'branch_id'}" />
+                    <filter name="customer" string="Customer" context="{'group_by':'order_partner_id'}" />
+                    <filter name="product" string="Item" context="{'group_by':'product_id'}" />
+                    <filter name="status" string="Status" context="{'group_by':'state'}" />
+                    <filter name="order_type" string="Order Type" context="{'group_by':'order_type'}" />
+                    <filter string="Company" name="company" groups="base.group_multi_company"
+                        context="{'group_by':'company_id'}" />
+                    <separator />
+                    <filter string="Order Date" name="order_date" context="{'group_by':'order_date'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_line_action" model="ir.actions.act_window">
+        <field name="name">Sale Analysis</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="sale_line_view_search" />
+    </record>
+
+    <menuitem id="sale_report_menu" name="Sales Report" sequence="90" action="sale_line_action"
+        parent="spa_management.spa_report_menu" />
+
+</odoo>

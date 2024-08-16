@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="main_branch" model="spa.branch">
+            <field name="name">Main</field>
+        </record>
+
+
+        <!-- SEQUENCE -->
+        <record id="spa_booking_sequence" model="ir.sequence">
+            <field name="name">Spa Booking</field>
+            <field name="code">spa.booking</field>
+            <field name="prefix">B</field>
+            <field name="padding">4</field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,333 @@
+.rt_cal_container :focus {
+    outline-style: auto
+}
+
+.rt_cal_title {
+    box-sizing: border-box;
+    background-color: white;
+    color: #2c2c2c;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 60px;
+    padding-left: 20px;
+}
+
+.rt_cal_container {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    font-family: Roboto, Arial;
+    font-size: 14px
+}
+
+.rt_cal_container div {
+    -moz-user-select: none;
+    -moz-user-select: -moz-none
+}
+
+.rt_cal_navline {
+    height: 20px;
+    position: absolute;
+    z-index: 3;
+    width: 750px;
+    color: rgba(0, 0, 0, .75)
+}
+
+.rt_cal_navline div {
+    position: absolute;
+    white-space: nowrap;
+    top: 14px
+}
+
+.rt_cal_navline .rt_cal_date {
+    border: 0;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Roboto, Arial;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    padding: 1px 0 0;
+    color: rgba(0, 0, 0, .75);
+    z-index: -1
+}
+
+.rt_cal_button .rt_left_bg {
+    width: 1px;
+    overflow: hidden;
+    height: 17px;
+    z-index: 5;
+    top: 0
+}
+
+.rt_cal_prev_button {
+    cursor: pointer;
+    right: 148px;
+    background-color: none;
+    background-image: url('/spa_booking_calendar/static/lib/img/arrow_left.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    border: 1px solid transparent;
+    border-radius: 5px 0 0 5px
+}
+
+.rt_cal_today_button {
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0288d1;
+    right: 57px;
+    background-color: none;
+    background-image: none;
+    background-position: -62px 0;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 80px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    text-decoration: none;
+    text-transform: uppercase
+}
+
+.rt_cal_next_button {
+    cursor: pointer;
+    right: 16px;
+    background-color: none;
+    background-image: url('/spa_booking_calendar/static/lib/img/arrow_right.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    border: 1px solid transparent;
+    border-radius: 0 5px 5px 0
+}
+
+.rt_cal_tab {
+    width: 88px;
+    height: 29px;
+    background-color: none;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-top: 1px;
+    border-radius: 0;
+    cursor: pointer;
+    border: 1px solid #0288d1;
+    color: #0288d1;
+    font-size: inherit
+}
+
+.rt_cal_tab.active {
+    text-decoration: none;
+    cursor: default;
+    font-weight: 500;
+    font-size: inherit;
+    color: #fff;
+    border: 1px solid #0288d1;
+    border-bottom: 1;
+    background-color: #0288d1;
+    z-index: 25
+}
+
+.rt_cal_tab_first {
+    border-radius: 2px 0 0 2px;
+    border-right: 0
+}
+
+.rt_cal_tab_last {
+    border-radius: 0 2px 2px 0
+}
+
+.rt_cal_date,
+.rt_cal_next_button,
+.rt_cal_prev_button,
+.rt_cal_tab,
+.rt_cal_today_button {
+    line-height: 30px
+}
+
+.rt_cal_header {
+    position: absolute;
+    overflow: hidden;
+    left: 10px;
+    background: #fff;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+    z-index: 2
+}
+
+.rt_cal_data {
+    -webkit-tap-highlight-color: transparent;
+    border-top: 1px solid transparent;
+    position: absolute;
+    width: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch
+}
+
+.rt_cal_data,
+.rt_cal_event,
+.rt_cal_event_clear,
+.rt_cal_event_line {
+    -ms-touch-action: pan-y;
+    touch-action: pan-y
+}
+
+.fc-top-title {
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-right: 10px;
+}
+
+.fc-top-filter {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.fc-content {
+    color: #000000 !important;
+}
+
+
+
+
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+
+@media (min-width: 1281px) {
+  
+      .fc-scroller {
+    height: 480px !important;
+}
+
+.fc-scroller.fc-time-grid-container {
+    height: 640px !important;
+    overflow: scroll !important;
+}
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+      .fc-scroller {
+    height: 480px !important;
+}
+
+.fc-scroller.fc-time-grid-container {
+    height: 540px !important;
+    overflow: scroll !important;
+}
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+      .fc-scroller {
+    height: 480px !important;
+}
+
+.fc-scroller.fc-time-grid-container {
+    height: 440px !important;
+    overflow: scroll !important;
+}
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+      .fc-scroller {
+    height: 480px !important;
+}
+
+.fc-scroller.fc-time-grid-container {
+    height: 440px !important;
+    overflow: scroll !important;
+}
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+        .fc-scroller {
+    height: 480px !important;
+}
+
+.fc-scroller.fc-time-grid-container {
+    height: 440px !important;
+    overflow: scroll !important;
+}
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+        .fc-scroller {
+    height: 480px !important;
+}
+
+.fc-scroller.fc-time-grid-container {
+    height: 440px !important;
+    overflow: scroll !important;
+}
+  
+}
+
+
+
+
+
+
+div.fc-time span {
+    display: none !important;
+}
+
+div.fc-title {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fc-list-table .fc-list-item {
+    cursor: pointer;
+}
+
+.fc-bgevent {
+    cursor: not-allowed;
+}
+

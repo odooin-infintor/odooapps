@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+
+    <t t-name="booking_calendar_template">
+        <div class="row">
+            <div class="col-3">
+                <div class='fc-top-title'>Booking Calendar</div>
+            </div>
+            <div class="col-2">
+                <div class="fc-top-filter">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class='fc-top-filter'>
+                    <select id="branch_selector" style="font-size: 14px;" t-if="branches.length > 1"
+                        class="o_dropdown_toggler_btn form-control-sm dropdown-toggle">
+                        <option value="all">All Branches</option>
+                        <t t-foreach="branches" t-as="br">
+                            <option t-att-value='br.id' selected="">
+                                <t t-esc='br.name' />
+                            </option>
+                        </t>
+                    </select>
+                    <span t-if="branches.length == 1" style="font-weight: 700; font-size: 15px;  line-height: 2">
+                        Branch:
+                        <t t-esc="branches[0].name" />
+                    </span>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class='fc-top-filter'>
+                    <select id="service_selector" style="font-size: 14px; width:100%"
+                        class="o_dropdown_toggler_btn form-control-sm dropdown-toggle">
+                        <option value="0" data-tmpl_id="0">Search By Service</option>
+                        <t t-foreach="services" t-as="service">
+                            <option t-att-value="service.id" t-att-data-tmpl_id="service.template_id" >
+                                <t t-esc="service.name" />
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class='fc-top-filter'>
+                    <select id="employee_selector" style="font-size: 14px;"
+                        class="o_dropdown_toggler_btn form-control-sm dropdown-toggle">
+                        <option value="all">All Staff</option>z
+                        <t t-foreach="employees" t-as="emp">
+                            <option t-att-value='emp.id'>
+                                <t t-esc='emp.title' />
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+        <script>
+            $("select#service_selector").select2();
+        </script>
+    </t>
+
+</templates>

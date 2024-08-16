@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employee_form_inherit_heyday" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.heyday</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="is_beautician" />
+                <field name="branch_id" required="1"/>
+                <field name ="overlap_timing" widget="boolean_toggle"/>
+            </field>
+
+            <notebook position="inside">
+                <page string="Workshift Settings" attrs="{'invisible': [('is_beautician', '=', False)]}">
+                    <group>
+                        <group>
+                            <group>
+                            <div>
+                            </div>
+                            </group>
+                            <field name="work_shift_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="week_day" required="1" />
+                                    <field name="shift_from" string="From" required="1" widget="float_time" />
+                                    <field name="shift_to" string="To" required="1" widget="float_time" />
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <label for="product_ids" />
+                            <div>
+                                <field name="product_ids" widget="many2many_tags" nolabel="1"
+                                    domain="[('sale_ok', '=', True), ('type', '=', 'service')]" />
+                                <button name="action_load" type="object" string="Load all" class="oe_link oe_edit_only"
+                                    icon="fa-refresh" />
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <menuitem id="spa_users_menu" name="Employees" parent="spa_config_menu" action="hr.open_view_employee_list_my"
+        sequence="11" />
+
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_users_form_inherit_in_spa" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.in.spa</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <notebook>
+                <page name="in_spa" string="Spa Management">
+                    <group>
+                        <group>
+                            <field name="is_spa_user" />
+                        </group>
+                        <group>
+                            <field name="branch_id"
+                                attrs="{'invisible': [('is_spa_user', '=', False)], 'required': [('is_spa_user', '=', True)]}" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
