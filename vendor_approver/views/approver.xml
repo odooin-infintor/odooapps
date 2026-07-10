@@ -9,10 +9,11 @@
                   <field name="approver" invisible="1"/>
                   <field name="is_approver" invisible="1"/>
                 </xpath>
-                <xpath expr="//button[@name='action_create_invoice'][2]" position="attributes">
-                  <attribute name="groups">vendor_approver.group_bill_creation,base.group_system</attribute>
-                </xpath> 
-                <xpath expr="//button[@name='action_create_invoice'][1]" position="attributes">
+                <!-- Odoo 19: 'action_create_invoice' button no longer exists on the PO
+                     form (it now only exists in the list view). Bill creation on the
+                     form is done via the 'purchase_file_uploader' widget (Upload Bill).
+                     Gating that widget preserves the original bill-creation restriction. -->
+                <xpath expr="//widget[@name='purchase_file_uploader']" position="attributes">
                   <attribute name="groups">vendor_approver.group_bill_creation,base.group_system</attribute>
                 </xpath>
                 <xpath expr="//button[@id='draft_confirm']" position="attributes">
