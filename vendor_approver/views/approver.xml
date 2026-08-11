@@ -17,8 +17,8 @@
                 </xpath>
                 <xpath expr="//button[@id='draft_confirm']" position="attributes">
                   <attribute name="invisible">is_approver != True or state != 'draft'</attribute>
-                </xpath> 
-                <xpath expr="//button[@name='button_confirm']" position="attributes">
+                </xpath>
+                <xpath expr="//button[@id='bid_confirm']" position="attributes">
                   <attribute name="invisible">is_approver != True or state != 'sent'</attribute>
                 </xpath>
                 <xpath expr="//header" position="inside">

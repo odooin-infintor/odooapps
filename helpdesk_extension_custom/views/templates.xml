@@ -6,13 +6,11 @@
         <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='stage_id']" position="after">
-                <button name="action_set_on_hold" string="Put On-Hold" type="object" class="oe_highlight"  invisible="is_on_hold_wizard_applied == True"/>
+                <button name="action_set_on_hold" string="Put On-Hold" type="object" class="oe_highlight" invisible="is_on_hold_wizard_applied == True"/>
             </xpath>
-            <xpath expr="//field[@name='ticket_type_id']" position="after">
-                    <field name="on_hold_reason_id" invisible="is_on_hold_wizard_applied == False"/>
-            </xpath>
-            <xpath expr="//field[@name='ticket_type_id']" position="after">
-                    <field name="is_on_hold_wizard_applied"/>
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="on_hold_reason_id" invisible="is_on_hold_wizard_applied == False"/>
+                <field name="is_on_hold_wizard_applied"/>
             </xpath>
         </field>
     </record>
