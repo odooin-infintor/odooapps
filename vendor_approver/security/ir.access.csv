@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_rfq_approver_wizard,rfq.approver.wizard,rfq.approver.wizard,base.group_user,crud,
+access_odoobot_chat,odoobot.chat,odoobot.chat,base.group_user,crud,

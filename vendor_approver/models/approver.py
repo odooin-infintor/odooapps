@@ -128,11 +128,11 @@ class AccountMoveInherit(models.Model):
                     for node in doc.xpath("//form[@string='Account Entry']"):
                         node.set('create', '0')
                     res['arch'] = etree.tostring(doc)
-                elif view_type == 'tree':
+                elif view_type == 'list':
                     doc = etree.XML(res['arch'])
                     view = self.env['ir.ui.view'].browse(view_id)
                     if view.xml_id == 'account.view_in_invoice_bill_tree':
-                        for node in doc.xpath("//tree[@string='Invoices']"):
+                        for node in doc.xpath("//list[@string='Invoices']"):
                             node.set('create', '0')
                         res['arch'] = etree.tostring(doc, encoding='unicode')
         return res
@@ -159,11 +159,11 @@ class AccountPaymentInherit(models.Model):
                     for node in doc.xpath("//form[@string='Register Payment']"):
                         node.set('create', '0')
                     res['arch'] = etree.tostring(doc)
-                elif view_type == 'tree':
+                elif view_type == 'list':
                     doc = etree.XML(res['arch'])
                     view = self.env['ir.ui.view'].browse(view_id)
                     if view.xml_id == 'account.view_account_supplier_payment_tree':
-                        for node in doc.xpath("//tree"):
+                        for node in doc.xpath("//list"):
                             node.set('create', '0')
                         res['arch'] = etree.tostring(doc, encoding='unicode')
         return res

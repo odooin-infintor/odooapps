@@ -12,7 +12,7 @@
     'website': "https://www.infintor.com",
 
     'category': 'Services/Helpdesk',
-    'version': '19.0.1.0.0',
+    'version': '20.0.1.0.0',
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
@@ -20,10 +20,10 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'views/hold_reason.xml',
         'views/templates.xml',
         'views/views.xml',
+        'security/ir.access.csv',
     ],
     'images': ['static/description/banner.png'],
     'installable': True,

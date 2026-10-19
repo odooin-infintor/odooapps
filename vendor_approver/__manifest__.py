@@ -2,7 +2,7 @@
 {
     'name': "Multi-Level Approvals for Quotations, Vendor Bills & Vendor Payments",
 
-    'version':'19.0.1.0.0',
+    'version': '20.0.1.0.0',
     'license': 'LGPL-3',
 
     'summary': """
@@ -22,8 +22,8 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'security/user_groups.xml',
+        'security/ir.access.csv',
         'views/approver.xml',
     ],
     'images': ['static/description/banner.png'],
